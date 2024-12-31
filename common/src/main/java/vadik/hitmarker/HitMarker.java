@@ -7,7 +7,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import vadik.hitmarker.network.ModPacket;
 import vadik.hitmarker.network.S2CHitPacket;
 import vadik.hitmarker.platform.Services;
 
@@ -18,10 +17,9 @@ import vadik.hitmarker.platform.Services;
 public class HitMarker {
 
     public static final String MODID = "hitmarker";
-    public static final SoundEvent HIT = SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "hit"));
+    public static final SoundEvent HIT = SoundEvent.createVariableRangeEvent(id("hit"));
     public static final String MOD_NAME = "HitMarker";
     public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
-
 
     public static void hit(Entity damaged, DamageSource source) {
         sendToPlayer(false,source);
@@ -33,8 +31,12 @@ public class HitMarker {
 
     private static void sendToPlayer(boolean kill, DamageSource attacker) {
         if (attacker.getEntity() instanceof ServerPlayer player) {
-            Services.PLATFORM.sendToClient(new S2CHitPacket(kill), ModPacket.HIT, player);
+            Services.PLATFORM.sendToClient(new S2CHitPacket(kill), player);
         }
+    }
+
+    public static ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MODID,path);
     }
 
 }

@@ -8,28 +8,27 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://fabricmc.net/",
-        "sources": "https://github.com/FabricMC/fabric-example-mod"
+        "homepage": "https://modrinth.com/mod/hitmarker/",
+        "sources": "https://github.com/vadik317/hitmarkermod/"
     },
     "license": "${license}",
     "icon": "assets/modid/${mod_id}.png",
     "environment": "*",
     "entrypoints": {
         "main": [
-            "vadik.hitmarker.HitMarkerFa"
+          "vadik.hitmarker.HitMarkerFabric"
         ],
         "client": [
             "vadik.hitmarker.client.HitMarkerClientFabric"
         ]
     },
     "mixins": [
-        "${mod_id}.mixins.json",
         "${mod_id}.fabric.mixins.json"
     ],
     "depends": {
         "fabricloader": ">=0.14",
         "fabric": "*",
-        "minecraft": ">=1.19",
+        "minecraft": ">=1.21",
         "java": ">=17"
     },
     "suggests": {
